@@ -1,17 +1,14 @@
 <div align="center">
   <img src="CMF_Phone_2_Pro_Cover_NoBg.png" width="500" alt="CMF Phone 2 Pro Cover">
   <h1>📱 CMF Phone 2 Pro (Galaga) — Complete Root & Bootloader Spoofing Guide</h1>
-  <p>Ek A-to-Z Professional Guide aapke phone ko safely Root karne aur Bootloader Warning (Fenrir) ko hide karne ke liye.</p>
+  <p>A professional A-to-Z guide for safely rooting your device and spoofing the unlocked bootloader state (using Fenrir).</p>
 </div>
 
 ---
 
-> [!NOTE]
-> Yeh poori guide shuru se lekar aakhir tak Hindi mein banayi gayi hai taaki kisi ko bhi samajhne mein problem na ho. Agar aap pehli baar root kar rahe hain, toh tension mat lijiye, bas steps ko dhyaan se follow karein!
+## 📱 Target Device & Firmware Details
 
-## 📱 Device & Firmware Details (Target)
-
-Niche ek box diya gaya hai, aapko is tutorial ke zariye exactly is build par aana hai:
+Below is the specific firmware version this guide is built for. You **must** be on this exact build for the Fenrir bootloader spoofing to work flawlessly.
 
 | Feature | Details |
 | :--- | :--- |
@@ -24,9 +21,9 @@ Niche ek box diya gaya hai, aapko is tutorial ke zariye exactly is build par aan
 
 ---
 
-## 🛑 Step 0: Apni Current Details Check Karein
+## 🛑 Step 0: Verify Your Current Build
 
-Pehle verify karein ki abhi aap kis version par hain. PC se apne phone ko connect karein aur CMD mein in commands ko run karein:
+First, verify what version you are currently on. Connect your phone to your PC and run these commands in CMD/PowerShell:
 
 ```bash
 adb shell getprop ro.build.display.id
@@ -44,123 +41,149 @@ adb shell getprop ro.boot.slot_suffix
 </details>
 <br>
 
-Agar aapka output upar diye gaye box se match **nahi** karta (kyunki aap purane version par hain), toh aapko **Step 1** se start karna hoga!
+If your output does **not** match the exact versions shown in the screenshot above (meaning you are on an older version), you will need to start from **Step 1** to upgrade properly!
 
 ---
 
-## 📥 Required Downloads (Sab Kuch Ek Jagah)
+## 📥 Required Downloads (All-in-One)
 
-Bina kisi confusion ke, aapko idhar-udhar bhatakne ki zaroorat nahi hai. Saari zaroori files ko nicely categorize kar diya gaya hai:
+To make things extremely simple, all required files are well organized below:
 
 ### 📦 1. Core Files (Firmware & Fenrir)
-*Filhal inke links Release section mein add kiye jayenge. Tab tak aap mere Release page ka wait karein.*
+*Links will be updated in the Releases section soon. Stay tuned!*
 
 | File Name | Description | Download Link |
 | :--- | :--- | :--- |
-| **AIO Firmware Zip** | Ek single zip jisme saara extracted firmware aur flashing scripts hain. | [📥 Download from Releases](#) |
-| **Fenrir Bin** | Bootloader warning ko hide karne wali file (`galaga-fenrir.bin`). | [📥 Download from Releases](#) |
+| **AIO Firmware Zip** | A single ZIP containing the extracted firmware and flashing scripts. | [📥 Download from Releases](#) |
+| **Fenrir Bin** | The actual file (`galaga-fenrir.bin`) that hides the bootloader warning. | [📥 Download from Releases](#) |
 
-### ⚙️ 2. Root Managers (Koi Ek Chunein)
-Apni pasand ka koi bhi ek **Manager APK** download karein. *(Apatch ab supported nahi hai, uski jagah BakaSU use karein)*:
+### ⚙️ 2. Root Managers (Choose One)
+Download **one** Manager APK of your choice. *(Note: Apatch is no longer recommended here; please use BakaSU instead)*:
 
 | Manager Name | Official Repository Link |
 | :--- | :--- |
 | 🛡️ **KernelSU** | [Download KernelSU APK](https://github.com/tiann/KernelSU/releases) |
 | 🚀 **KernelSU Next** | [Download KernelSU Next APK](https://github.com/KernelSU-Next/KernelSU-Next/releases) |
-| 🦊 **BakaSU** *(Pehle Resuski tha)* | [Download BakaSU APK](https://github.com/Baka-SU/BakaSU/releases) |
+| 🦊 **BakaSU** *(Formerly Resuski)* | [Download BakaSU APK](https://github.com/Baka-SU/BakaSU/releases) |
 
 ---
 
 ## 🚀 Step 1: PC Setup & Bootloader Unlock
 
-Agar aap pehli baar aaye hain, toh aapka bootloader 100% lock hoga. Root aur flashing permissions ke liye usko unlock karna zaroori hai. **(Dhyan rahe: Isse phone ka saara data wipe / delete ho jayega)**
+If you are new here, your bootloader is likely locked. You must unlock it to get flashing permissions. 
+> [!WARNING]
+> **Unlocking the bootloader will COMPLETELY WIPE / DELETE all your data.**
 
-1. **PC Setup:** Apne computer mein `Platform Tools` (ADB & Fastboot) aur `Android Bootloader/Fastboot Drivers` install karein.
-2. **USB Debugging:** Phone ki **Settings > About Phone** mein ja kar Build Number par 7 baar tap karein. Phir **Developer Options** mein ja kar **OEM Unlocking** aur **USB Debugging** ko ON karein.
-3. Phone ko PC se connect karein aur CMD mein likhein:
+### 1. Download Essential Drivers
+First, download and extract the official tools on your computer:
+*   **Platform Tools (ADB & Fastboot):** [Official Download Link (Windows, Mac, Linux)](https://developer.android.com/tools/releases/platform-tools)
+*   **Google USB Drivers:** [Official Download Link (Windows)](https://developer.android.com/studio/run/win-usb)
+
+### 2. Manual Driver Installation (Important)
+Sometimes, Windows fails to recognize the phone in Fastboot mode (you might see a yellow warning triangle in Device Manager). If that happens:
+1. Open **Device Manager**.
+2. Right-click the Android device with the yellow triangle and select **Update driver**.
+3. Click **Browse my computer for drivers** -> **Let me pick from a list of available drivers on my computer**.
+4. Select **Android Device** -> **Android Bootloader Interface**, then click Next to install.
+
+### 3. Unlocking the Bootloader
+1. On your phone, go to **Settings > About Phone** and tap **Build Number** 7 times.
+2. Go back to **Developer Options** and enable both **OEM Unlocking** and **USB Debugging**.
+3. Connect your phone to your PC and type:
    ```bash
+   adb devices
    adb reboot bootloader
    ```
-4. Phone fastboot mode mein aa jayega. Ab yeh command dalein:
+4. Once your phone is in Fastboot mode, type this command to unlock:
    ```bash
    fastboot flashing unlock
    ```
-5. Phone ki screen par ek warning aayegi. **Volume buttons** se "Unlock the bootloader" select karein aur **Power button** dabayein.
-6. Phone reset hoga aur on ho jayega. (Ab aapko permission mil chuki hai naya firmware daalne ki!)
+
+> [!CAUTION]
+> **CRITICAL STEP:** The moment you hit Enter on the unlock command, your phone screen will display a bunch of code. **You only have 2 to 3 seconds to press the VOLUME UP button!** If you miss this tiny window, the command will fail, and you will have to re-enter the `fastboot flashing unlock` command and try again.
+
+5. After pressing Volume Up, select "Unlock the bootloader" using the volume keys and confirm with the **Power button**.
+6. Your phone will reset and boot up. You now have permission to flash the new firmware!
 
 ---
 
-## ⚡ Step 2: Supported Firmware Par Jana
+## ⚡ Step 2: Jump to Supported Firmware
 
-Ab kyunki phone unlock hai, hum apna supported latest firmware daalenge jispar Fenrir perfectly kaam karega.
+Now that your bootloader is unlocked, let's flash the supported firmware on which Fenrir works flawlessly.
 
-1. Meri **Release** section se download ki gayi "AIO Firmware Zip" ko extract karein.
-2. Phone ki USB Debugging wapas ON karein aur phone ko wapas Bootloader mode mein dalein (`adb reboot bootloader`).
-3. Extracted folder mein ek flash script hogi (jaise `flash_all.bat`), uspe double click karein.
-4. Script aapse kuch poochegi, usme apne hisaab se Yes (Y) ya No (N) enter karein aur flashing start hone dein.
-5. Flashing khatam hone ke baad phone automatically naye `Galaga-B4.1` version par on ho jayega.
-
----
-
-## 🛡️ Step 3: Phone Ko Root Karna (KernelSU / Apatch)
-
-Firmware properly install ho gaya, ab hum `init_boot.img` nikal kar phone root karenge.
-
-1. Usi extracted folder se `init_boot.img` copy karke apne phone ki internal storage (Downloads folder) mein daal dein.
-2. Phone mein apna manpasand Manager (KernelSU Next, ya Resuski) ka APK install karein.
-3. Manager app open karein ➔ **Install** par click karein ➔ **Select and patch a file** par click karein.
-4. Apni internal storage se wahi `init_boot.img` select karein aur Patch hone dein.
-5. Patch hone ke baad, ek nayi patched image phone ke `Download` folder mein ban jayegi. Us file ko copy karke PC par apne `Platform Tools` wale folder mein rakhein jahan aapka CMD open hai.
-6. Phone ko Fastboot (Bootloader) mein dalein aur flash karein:
+1. Extract the "AIO Firmware Zip" you downloaded from my Releases.
+2. Re-enable **USB Debugging** on your phone, then reboot back into Bootloader mode:
    ```bash
-   fastboot flash init_boot <patched_file_ka_naam.img>
+   adb reboot bootloader
+   ```
+3. Inside the extracted folder, double-click the flash script (e.g., `flash_all.bat`).
+4. The script will prompt you with a few questions. Answer Yes (`Y`) or No (`N`) according to your preferences and let the flashing process begin.
+5. Once flashing is finished, the phone will automatically reboot into the fresh `Galaga-B4.1` version.
+
+---
+
+## 🛡️ Step 3: Rooting the Phone (KernelSU / BakaSU)
+
+Now that we are on the correct firmware, we will extract the `init_boot.img` and root the phone.
+
+1. From the extracted AIO folder on your PC, copy `init_boot.img` and paste it into your phone's internal storage (e.g., the `Downloads` folder).
+2. Install your preferred Root Manager APK (KernelSU, KernelSU Next, or BakaSU) on your phone.
+3. Open the Manager app ➔ tap **Install** ➔ choose **Select and patch a file**.
+4. Select the `init_boot.img` from your internal storage and wait for the patching process to finish.
+5. A new patched image will be generated in your phone's `Download` folder. Copy this patched file back to your PC and place it inside your `Platform Tools` folder.
+6. Boot your phone into Fastboot (Bootloader) mode and run:
+   ```bash
+   fastboot flash init_boot <name_of_the_patched_file.img>
    fastboot reboot
    ```
-7. Phone on hone par wapas Manager app check karein. Aap PC se bhi verify kar sakte hain:
+7. Once the phone boots up, open the Manager app again. You can also verify root via your PC:
    ```bash
    adb shell su -c id
    ```
-   *(Agar `uid=0(root)` aaya, matlab Boom! 💥 Root ho gaya).*
+   *(If the output shows `uid=0(root)`, Boom! 💥 You are successfully rooted).*
 
 ---
 
-## 🦊 Step 4: Fenrir Flash Karna (Bootloader Spoofing)
+## 🦊 Step 4: Flash Fenrir (Bootloader Spoofing)
 
-Root ho chuka hai, ab bas wo shuruwaati Unlocked Bootloader wali warning hatani hai aur system ko spoof karna hai.
+With root access secured, the final step is to hide the annoying "Unlocked Bootloader" warning by spoofing the system state.
 
-1. Phone ko fir se Fastboot mode mein dalein (`adb reboot bootloader`).
-2. Meri release mein di gayi Fenrir file (`galaga-fenrir.bin`) ko Platform tools wale folder mein rakhein.
-3. Yeh command dalein:
+1. Reboot your phone into Fastboot mode:
+   ```bash
+   adb reboot bootloader
+   ```
+2. Place the `galaga-fenrir.bin` file into your Platform Tools folder.
+3. Run the following command:
    ```bash
    fastboot flash lk galaga-fenrir.bin
    ```
-4. Flash hone ke baad, aapko phone ki Recovery mein jana hai:
+4. Once flashed, you need to boot directly into Recovery:
    ```bash
    fastboot reboot recovery
    ```
    > [!IMPORTANT]
-   > *Pro Tip:* Kabhi kabhi command dene ke baad bhi phone recovery open nahi karta. Aise mein **Volume Up (+)** aur **Power Button** ko ek sath daba kar rakhein jab tak phone explicitly Recovery mode mein na chala jaye.
+   > *Pro Tip:* Sometimes the command fails to open the recovery screen. If that happens, manually hold down **Volume Up (+)** and the **Power Button** simultaneously until the phone enters Recovery mode.
 
-5. Recovery open hone ke baad, menu se **Format Data / Factory Data Reset** select karein.
-6. Reset hone ke baad phone on karein, aur apna initial setup complete karein!
+5. Inside Recovery, select **Format Data / Factory Data Reset** from the menu.
+6. After the reset completes, reboot the phone and complete the initial Android setup!
 
 ---
 
 ## ✅ Step 5: Final Verification
 
-Phone pura setup hone ke baad confirm karne ke liye:
-1. Apna wahi version wala Root Manager APK dobara install karein (Root wahan apne aap wapas aa jayega, kyunki wo kernel-level par hai).
-2. PC par ADB se yeh commands run karke dekhein ki Bootloader spoof chal raha hai ya nahi:
+To confirm everything is working perfectly after setup:
+1. Re-install the exact same Root Manager APK you used earlier (Root access will automatically be detected because it is patched at the kernel level).
+2. On your PC, use ADB to verify the bootloader spoofing state:
 
 ```bash
 adb shell getprop ro.boot.verifiedbootstate
-# Output aana chahiye: green
+# Expected Output: green
 
 adb shell getprop ro.boot.flash.locked
-# Output aana chahiye: 1
+# Expected Output: 1
 
 adb shell getprop ro.boot.vbmeta.device_state
-# Output aana chahiye: locked
+# Expected Output: locked
 ```
 
-**Congratulations! 🎉 Aapka CMF Phone 2 Pro safely root aur spoof ho chuka hai ekdum professional tarike se!**
+**Congratulations! 🎉 Your CMF Phone 2 Pro is now safely rooted and spoofed in the most professional way possible!**
