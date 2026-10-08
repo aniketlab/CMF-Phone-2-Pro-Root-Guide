@@ -179,44 +179,64 @@ Copy this `init_boot.img` and paste it into your phone's internal storage (e.g.,
 
 ## 🦊 Step 4: Flash Fenrir (Bootloader Spoofing)
 
-With root access secured, the final step is to hide the annoying "Unlocked Bootloader" warning by spoofing the system state.
+### Why do we need Fenrir?
+When you officially unlock a bootloader, the system's Verified Boot state changes from `green` to `orange` or `red`. This triggers the annoying "Bootloader is unlocked" warning on every boot, fails Play Integrity / SafetyNet checks, and breaks banking apps. 
+**Fenrir** intercepts this boot process. By flashing it to the `lk` (Little Kernel) partition, Fenrir spoofs the bootloader state, forcing it to report a secure `green` (locked) state to the Android OS. No more warnings, and banking apps work flawlessly!
 
-1. Reboot your phone into Fastboot mode:
-   ```bash
-   adb reboot bootloader
-   ```
-2. Place the `galaga-fenrir.bin` file into your Platform Tools folder.
-3. Run the following command:
+### 1. Flash the Fenrir Payload
+1. Enter Bootloader mode again (via `adb reboot bootloader` or by holding the manual buttons).
+2. Ensure the `galaga-fenrir.bin` file is inside your `Platform Tools` folder.
+3. Run the flash command:
    ```bash
    fastboot flash lk galaga-fenrir.bin
    ```
-4. Once flashed, you need to boot directly into Recovery:
+4. You should see a success message that looks similar to this:
+   ```text
+   Sending 'lk' (5221 KB)                             OKAY [  0.120s]
+   Writing 'lk'                                       OKAY [  0.050s]
+   Finished. Total time: 0.170s
+   ```
+
+### 2. The Tricky Part: Booting to Recovery
+Now you must boot into Recovery to format the data, but the standard method often fails on this device.
+
+1. First, type the standard command:
    ```bash
    fastboot reboot recovery
    ```
-   > [!IMPORTANT]
-   > *Pro Tip:* Sometimes the command fails to open the recovery screen. If that happens, manually hold down **Volume Up (+)** and the **Power Button** simultaneously until the phone enters Recovery mode.
+2. **Did you get a Dead Android?** 
+   *(Often, the phone gets stuck on a screen showing a fallen Android mascot with a red exclamation mark).* 
+   If you face this issue, follow these exact steps to fix it:
+   *   Press and hold **Volume Up + Power Button** simultaneously.
+   *   As soon as the device turns on/restarts, **release** the buttons.
+   *   The phone may restart 1 or 2 times on its own and then show a Boot Menu.
+   *   In this specific menu, use the **Volume Up** button to cycle through the options until you see **Recovery Mode**.
+   *   Press the **Volume Down** button to select and enter Recovery.
 
-5. Inside Recovery, select **Format Data / Factory Data Reset** from the menu.
-6. After the reset completes, reboot the phone and complete the initial Android setup!
+### 3. Format Data & Reboot
+1. Once you are successfully on the Android Recovery screen, use your volume keys to select **Format Data / Factory Data Reset**.
+2. Confirm the wipe. After it is complete, reboot the system.
+3. Complete your normal Android initial setup (connect to Wi-Fi, add your Google account, etc.).
 
 ---
 
-## ✅ Step 5: Final Verification
+## ✅ Step 5: Final Verification & Boom! 💥
 
-To confirm everything is working perfectly after setup:
-1. Re-install the exact same Root Manager APK you used earlier (Root access will automatically be detected because it is patched at the kernel level).
-2. On your PC, use ADB to verify the bootloader spoofing state:
+Your phone is now fully set up, but let's confirm everything is working perfectly!
+
+1. **Restore Root Manager:** Download and install the *exact same version* of the **KernelSU Next** APK you used in Step 3. 
+2. Open the app. You will see that **Root is already active**! *(The patched `init_boot` image stays intact even after the factory reset).*
+3. **Verify Spoofing:** Connect your phone to your PC, ensure USB Debugging is ON, and run these final commands to check your security status:
 
 ```bash
 adb shell getprop ro.boot.verifiedbootstate
-# Expected Output: green
+# 🟢 Expected Output: green
 
 adb shell getprop ro.boot.flash.locked
-# Expected Output: 1
+# 🟢 Expected Output: 1
 
 adb shell getprop ro.boot.vbmeta.device_state
-# Expected Output: locked
+# 🟢 Expected Output: locked
 ```
 
-**Congratulations! 🎉 Your CMF Phone 2 Pro is now safely rooted and spoofed in the most professional way possible!**
+**Congratulations! 🎉 Your CMF Phone 2 Pro is perfectly rooted, the bootloader warning is completely gone, and your security integrity is fully intact!**
