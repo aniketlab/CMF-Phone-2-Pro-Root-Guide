@@ -122,8 +122,25 @@ Now that your bootloader is unlocked, let's flash the supported firmware on whic
    adb reboot bootloader
    ```
 3. Inside the extracted folder, double-click the **`flash_all.bat`** script.
-4. The script will prompt you with a few questions (e.g., Wipe Data? Flash both slots?). Answer Yes (`Y`) or No (`N`) according to your preferences and let the flashing process begin.
-5. Once flashing is finished, the phone will automatically reboot into the fresh `Galaga-B4.1` version.
+4. The script will prompt you with a series of questions. For a successful and clean installation, answer exactly as shown below:
+
+   | Script Prompt / Question | Your Input | Reason / Note |
+   | :--- | :---: | :--- |
+   | Bootloader unlocked? | **`Y`** | Required to proceed. |
+   | Are you in bootloader mode? | **`Y`** | Fastboot mode is required. |
+   | Fastboot drivers properly installed? | **`Y`** | Required to proceed. |
+   | Begin hash verification? | **`Y`** | Good practice to verify file integrity. |
+   | *Hash warning: Some files are invalid...* | **`Y`** | *(Note: The script misreads comment lines as missing files. Actual image files are 100% valid).* |
+   | Wipe Data? | **`Y`** | Highly recommended for a clean installation. |
+   | Flash images on both slots? | **`N`** | Flashing to the current active slot is sufficient. |
+   | Disable Android Verified Boot? | **`N`** | Keep AVB enabled. |
+   | Reboot to system? | **`Y`** | Reboots the phone automatically. |
+
+> [!WARNING]
+> **Do NOT press `Ctrl+C` or disconnect your phone during the flash!** 
+> While flashing the `vendor_a` partition, the process may appear completely frozen for a long time (5 to 10 minutes). This is completely normal. Be patient; the script will eventually resume, complete, and display `"# DONE #"`.
+
+5. Once flashing is finished, the flasher window will close after pressing a key, and the phone will automatically reboot into the fresh `Galaga-B4.1` version.
 
 ---
 
