@@ -8,10 +8,11 @@ This release contains all the necessary files to flash the supported firmware on
 
 ## 📦 What's Included?
 
-### 1. `Galaga_B4.1-260812-1729_FULL.zip` (Highly Recommended)
-An easy-to-use, **All-In-One (AIO) Flashable Zip** prepared by me. 
-*   **What it does:** Contains the fully extracted firmware and pre-configured flashing scripts (`flash_all.bat`). 
-*   **Why use this:** Saves you from the headache of manually downloading and arranging split firmware files from the official archive. Just extract, run the script, and your phone will be on the perfectly supported firmware.
+### 1. `Galaga_B4.1-260812-1729_FULL.zip` (Split Parts: `.001`, `.002`, etc.)
+An easy-to-use, **All-In-One (AIO) Flashable Package** prepared by me. Due to GitHub's 2GB file limit, it has been split into multiple parts.
+*   **How to extract:** Download all parts into the same folder. Right-click on the first file (`.zip.001`) and select **Extract Here** using [7-Zip](https://www.7-zip.org/) or WinRAR.
+*   **What it does:** Extracts into a folder containing the full firmware and pre-configured flashing scripts (`flash_all.bat`). 
+*   **Why use this:** Saves you from manually downloading and arranging split firmware files from the official archive. Just extract, run the script, and your phone will be on the perfectly supported firmware.
 
 ### 2. `init_boot.img`
 *   **What it is:** The stock `init_boot` image extracted directly from the B4.1 firmware.
