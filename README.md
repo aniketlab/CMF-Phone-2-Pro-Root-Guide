@@ -50,11 +50,24 @@ Agar aapka output upar diye gaye box se match **nahi** karta (kyunki aap purane 
 
 ## 📥 Required Downloads (Sab Kuch Ek Jagah)
 
-Bina kisi confusion ke, aapko alag-alag files dhundhne ki zaroorat nahi hai. Maine saari zaroori files ek hi zip mein daal di hain:
+Bina kisi confusion ke, aapko idhar-udhar bhatakne ki zaroorat nahi hai. Saari zaroori files ko nicely categorize kar diya gaya hai:
 
-1. **AIO Firmware Zip:** [GitHub Releases mein check karein](#) *(Jald hi yahan link add hoga! Is single zip mein extracted firmware, fastboot scripts sab hai)*
-2. **Fenrir Bin File:** [GitHub Releases mein check karein](#) (`galaga-fenrir.bin` bhi aapko yahin milegi)
-3. **Root Manager APK:** KernelSU / KernelSU Next / Apatch (Resuski) - Jo aapko pasand ho uska latest apk download kar lein.
+### 📦 1. Core Files (Firmware & Fenrir)
+*Filhal inke links Release section mein add kiye jayenge. Tab tak aap mere Release page ka wait karein.*
+
+| File Name | Description | Download Link |
+| :--- | :--- | :--- |
+| **AIO Firmware Zip** | Ek single zip jisme saara extracted firmware aur flashing scripts hain. | [📥 Download from Releases](#) |
+| **Fenrir Bin** | Bootloader warning ko hide karne wali file (`galaga-fenrir.bin`). | [📥 Download from Releases](#) |
+
+### ⚙️ 2. Root Managers (Koi Ek Chunein)
+Apni pasand ka koi bhi ek **Manager APK** download karein. *(Apatch ab supported nahi hai, uski jagah BakaSU use karein)*:
+
+| Manager Name | Official Repository Link |
+| :--- | :--- |
+| 🛡️ **KernelSU** | [Download KernelSU APK](https://github.com/tiann/KernelSU/releases) |
+| 🚀 **KernelSU Next** | [Download KernelSU Next APK](https://github.com/KernelSU-Next/KernelSU-Next/releases) |
+| 🦊 **BakaSU** *(Pehle Resuski tha)* | [Download BakaSU APK](https://github.com/Baka-SU/BakaSU/releases) |
 
 ---
 
