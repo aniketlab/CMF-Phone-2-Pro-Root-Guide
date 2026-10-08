@@ -54,8 +54,10 @@ To make things extremely simple, all required files are well organized below:
 
 | File Name | Description | Download Link |
 | :--- | :--- | :--- |
-| **AIO Firmware Zip** | A single ZIP containing the extracted firmware and flashing scripts. | [📥 Download from Releases](#) |
-| **Fenrir Bin** | The actual file (`galaga-fenrir.bin`) that hides the bootloader warning. | [📥 Download from Releases](#) |
+| **AIO Firmware Zip**<br>`Galaga_B4.1-260812-1729_FULL.zip` | **(Recommended)** Custom All-in-One zip prepared by me. Contains extracted firmware & flashing scripts ready to go. | [📥 Download from Releases](#) |
+| **Standalone `init_boot.img`** | For users *already* on this firmware who only need to patch it for root (saves you downloading the huge zip). | [📥 Download from Releases](#) |
+| **Fenrir Bin**<br>`galaga-fenrir.bin` | The actual file that hides the bootloader warning. | [📥 Download from Releases](#) |
+| **Official Nothing Archive** | *(Alternative)* Official split files. You will have to extract and arrange them manually. | [Link to spike0en repo](https://github.com/spike0en/nothing_archive/releases/tag/Galaga_B4.1-260812-1729) |
 
 ### ⚙️ 2. Root Managers (Choose One)
 Download **one** Manager APK of your choice. *(Note: Apatch is no longer recommended here; please use BakaSU instead)*:
@@ -111,13 +113,16 @@ Sometimes, Windows fails to recognize the phone in Fastboot mode (you might see 
 
 Now that your bootloader is unlocked, let's flash the supported firmware on which Fenrir works flawlessly.
 
-1. Extract the "AIO Firmware Zip" you downloaded from my Releases.
-2. Re-enable **USB Debugging** on your phone, then reboot back into Bootloader mode:
+> [!TIP]
+> If your device is **already** running the `Galaga-B4.1-260812-1729` build, you can skip this entire step! Just download the standalone `init_boot.img` from the Releases section and jump straight to **Step 3**.
+
+1. Download and extract **`Galaga_B4.1-260812-1729_FULL.zip`** from my Releases section. *(This is a ready-to-flash package I created to save you the headache of manually assembling split files).*
+2. Ensure **USB Debugging** is enabled, then reboot back into Bootloader mode:
    ```bash
    adb reboot bootloader
    ```
-3. Inside the extracted folder, double-click the flash script (e.g., `flash_all.bat`).
-4. The script will prompt you with a few questions. Answer Yes (`Y`) or No (`N`) according to your preferences and let the flashing process begin.
+3. Inside the extracted folder, double-click the **`flash_all.bat`** script.
+4. The script will prompt you with a few questions (e.g., Wipe Data? Flash both slots?). Answer Yes (`Y`) or No (`N`) according to your preferences and let the flashing process begin.
 5. Once flashing is finished, the phone will automatically reboot into the fresh `Galaga-B4.1` version.
 
 ---
