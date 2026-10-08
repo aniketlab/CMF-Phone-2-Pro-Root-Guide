@@ -144,25 +144,36 @@ Now that your bootloader is unlocked, let's flash the supported firmware on whic
 
 ---
 
-## 🛡️ Step 3: Rooting the Phone (KernelSU / BakaSU)
+## 🛡️ Step 3: Rooting the Phone (KernelSU Next Recommended)
 
-Now that we are on the correct firmware, we will extract the `init_boot.img` and root the phone.
+Now that we are on the correct firmware, we will patch the `init_boot.img` and root the phone.
 
-1. From the extracted AIO folder on your PC, copy `init_boot.img` and paste it into your phone's internal storage (e.g., the `Downloads` folder).
-2. Install your preferred Root Manager APK (KernelSU, KernelSU Next, or BakaSU) on your phone.
-3. Open the Manager app ➔ tap **Install** ➔ choose **Select and patch a file**.
-4. Select the `init_boot.img` from your internal storage and wait for the patching process to finish.
-5. A new patched image will be generated in your phone's `Download` folder. Copy this patched file back to your PC and place it inside your `Platform Tools` folder.
-6. Boot your phone into Fastboot (Bootloader) mode and run:
+### 1. Acquire the `init_boot.img`
+*   **If you performed Step 2:** You already have the `init_boot.img` inside your extracted AIO Firmware folder on your PC.
+*   **If you skipped Step 2:** Because you were already on the target firmware, simply download the standalone `init_boot.img` directly from the [Releases section](https://github.com/aniketlab/CMF-Phone-2-Pro-Root-Guide/releases/tag/v1.0.0-Galaga-B4.1).
+
+Copy this `init_boot.img` and paste it into your phone's internal storage (e.g., the `Downloads` folder).
+
+### 2. Patch the Image
+1. Install your preferred Root Manager APK on your phone. **(I highly recommend using KernelSU Next for this specific setup).**
+2. Open the Manager app. It will currently display **"Not Installed"** at the top.
+3. Tap on **Install** ➔ choose **Select and patch a file**.
+4. Browse your internal storage, select the `init_boot.img` you copied earlier, and let the patching process finish.
+5. A new patched image (e.g., `kernelsu_patched_xxx.img`) will be generated in your phone's `Download` folder. Copy this patched file back to your PC and place it directly inside your `Platform Tools` folder.
+
+### 3. Flash the Patched Image
+1. Connect your phone to your PC via USB.
+2. Enter Bootloader / Fastboot mode. You can do this in two ways (use whichever is easier for you):
+   *   **Method A (ADB):** Ensure USB Debugging is ON and run `adb reboot bootloader` in your CMD/PowerShell.
+   *   **Method B (Buttons):** Power off the phone completely, then hold **Volume Down + Power Button** until it boots into Fastboot mode.
+3. *(Quick Reminder: Ensure your Fastboot drivers are working correctly, just as you did in Step 1).*
+4. Flash the patched image by running the following commands (replace the filename with your actual patched file's name):
    ```bash
    fastboot flash init_boot <name_of_the_patched_file.img>
    fastboot reboot
    ```
-7. Once the phone boots up, open the Manager app again. You can also verify root via your PC:
-   ```bash
-   adb shell su -c id
-   ```
-   *(If the output shows `uid=0(root)`, Boom! 💥 You are successfully rooted).*
+5. Once the phone boots up, open the **KernelSU Next** app again. The status should now change to **Working**! 
+   *(Alternatively, you can verify via PC using `adb shell su -c id`. If the output shows `uid=0(root)`, Boom! 💥 You are successfully rooted).*
 
 ---
 
