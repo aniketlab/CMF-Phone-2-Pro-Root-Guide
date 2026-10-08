@@ -50,13 +50,12 @@ If your output does **not** match the exact versions shown in the screenshot abo
 To make things extremely simple, all required files are well organized below:
 
 ### 📦 1. Core Files (Firmware & Fenrir)
-*Links will be updated in the Releases section soon. Stay tuned!*
 
 | File Name | Description | Download Link |
 | :--- | :--- | :--- |
-| **AIO Firmware (Split Zip)**<br>`Galaga_B4.1-FULL.zip.001`, `.002`, etc. | **(Recommended)** Custom All-in-One package. Due to GitHub limits, it is split into parts. Download all parts, extract the first one, and you have everything ready to go! | [📥 Download from Releases](#) |
-| **Standalone `init_boot.img`** | For users *already* on this firmware who only need to patch it for root (saves you downloading the huge firmware files). | [📥 Download from Releases](#) |
-| **Fenrir Bin**<br>`galaga-fenrir.bin` | The actual file that hides the bootloader warning. | [📥 Download from Releases](#) |
+| **AIO Firmware (Split Zip)**<br>`Galaga_B4.1-FULL.zip`, `.z01`, `.z02` | **(Recommended)** Custom All-in-One package. Due to GitHub limits, it is split into parts. Download all 3 parts, extract the main `.zip` file, and you have everything ready to go! | [📥 Download from Releases](https://github.com/aniketlab/CMF-Phone-2-Pro-Root-Guide/releases/tag/v1.0.0-Galaga-B4.1) |
+| **Standalone `init_boot.img`** | For users *already* on this firmware who only need to patch it for root (saves you downloading the huge firmware files). | [📥 Download from Releases](https://github.com/aniketlab/CMF-Phone-2-Pro-Root-Guide/releases/tag/v1.0.0-Galaga-B4.1) |
+| **Fenrir Bin**<br>`galaga-fenrir.bin` | The actual file that hides the bootloader warning. | [📥 Download from Releases](https://github.com/aniketlab/CMF-Phone-2-Pro-Root-Guide/releases/tag/v1.0.0-Galaga-B4.1) |
 | **Official Nothing Archive** | *(Alternative)* Official split files. You will have to extract and arrange them manually. | [Link to spike0en repo](https://github.com/spike0en/nothing_archive/releases/tag/Galaga_B4.1-260812-1729) |
 
 ### ⚙️ 2. Root Managers (Choose One)
@@ -116,8 +115,8 @@ Now that your bootloader is unlocked, let's flash the supported firmware on whic
 > [!TIP]
 > If your device is **already** running the `Galaga-B4.1-260812-1729` build, you can skip this entire step! Just download the standalone `init_boot.img` from the Releases section and jump straight to **Step 3**.
 
-1. Download **all parts** of the AIO Firmware Zip (e.g., `.zip.001`, `.zip.002`, etc.) from my Releases section and place them in the same folder.
-2. Right-click on the first file (`Galaga_B4.1-260812-1729_FULL.zip.001`) and select **Extract Here** using [7-Zip](https://www.7-zip.org/) or WinRAR. It will automatically combine all parts into a single ready-to-flash folder! *(This saves you the headache of manually assembling individual raw images).*
+1. Download **all 3 parts** of the AIO Firmware Zip (`.zip`, `.z01`, `.z02`) from the [Releases section](https://github.com/aniketlab/CMF-Phone-2-Pro-Root-Guide/releases/tag/v1.0.0-Galaga-B4.1) and place them in the same folder.
+2. Right-click on the main file (`Galaga_B4.1-260812-1729_FULL.zip`) and select **Extract Here** using [7-Zip](https://www.7-zip.org/) or WinRAR. It will automatically combine all parts into a single ready-to-flash folder! *(This saves you the headache of manually assembling individual raw images).*
 3. Ensure **USB Debugging** is enabled, then reboot back into Bootloader mode:
    ```bash
    adb reboot bootloader

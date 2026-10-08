@@ -2,15 +2,15 @@
 
 **Release Version:** `v1.0.0-Galaga-B4.1`
 
-This release contains all the necessary files to flash the supported firmware on your CMF Phone 2 Pro, root it securely via KernelSU/BakaSU, and successfully spoof the unlocked bootloader state using Fenrir.
+This release includes all the files you need to flash the supported firmware on your CMF Phone 2 Pro, securely root it with KernelSU/BakaSU, and spoof the unlocked bootloader state with Fenrir.
 
 ---
 
 ## 📦 What's Included?
 
-### 1. `Galaga_B4.1-260812-1729_FULL.zip` (Split Parts: `.001`, `.002`, etc.)
-An easy-to-use, **All-In-One (AIO) Flashable Package** prepared by me. Due to GitHub's 2GB file limit, it has been split into multiple parts.
-*   **How to extract:** Download all parts into the same folder. Right-click on the first file (`.zip.001`) and select **Extract Here** using [7-Zip](https://www.7-zip.org/) or WinRAR.
+### 1. `Galaga_B4.1-260812-1729_FULL.zip` (Split Parts: `.zip`, `.z01`, `.z02`)
+An easy-to-use, **All-In-One (AIO) Flashable Package** I prepared. Due to GitHub's 2GB file limit, it has been split into multiple parts.
+*   **How to extract:** Download all 3 parts into the same folder. Right-click on the main file (`Galaga_B4.1-260812-1729_FULL.zip`) and select **Extract Here** using [7-Zip](https://www.7-zip.org/) or WinRAR.
 *   **What it does:** Extracts into a folder containing the full firmware and pre-configured flashing scripts (`flash_all.bat`). 
 *   **Why use this:** Saves you from manually downloading and arranging split firmware files from the official archive. Just extract, run the script, and your phone will be on the perfectly supported firmware.
 
