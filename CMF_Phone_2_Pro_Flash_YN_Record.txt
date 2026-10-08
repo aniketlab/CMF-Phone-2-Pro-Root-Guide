@@ -1,0 +1,81 @@
+CMF Phone 2 Pro (Galaga) — B4.1 Fastboot Flash Record
+=============================================================
+
+Device:
+- CMF Phone 2 Pro
+- Codename: Galaga
+- Previous build: Galaga-V3.2-250526-1427-IND
+- Previous Android: 15
+- Previous kernel: 6.1.112-android14-11-g8961b96ba360-ab12909824
+- Bootloader: UNLOCKED
+
+Target firmware:
+- Galaga_B4.1-260812-1729
+- Android 16
+
+Flasher:
+- Nothing Flasher / Galaga-Tetris Windows flash_all.bat
+
+PROMPTS / CHOICES USED
+======================
+
+1. Bootloader unlocked?
+   Y
+
+2. Are you in bootloader mode?
+   Y
+
+3. Fastboot drivers properly installed?
+   Y
+
+4. Begin hash verification?
+   Y
+
+5. Hash warning: "Some files are invalid or missing. Proceed anyway?"
+   Y
+   NOTE: The 15 "missing" entries were actually #/comment/header lines
+   from the SHA256 file being parsed incorrectly. Actual image files were
+   reported VALID; Invalid images = 0.
+
+6. Wipe Data?
+   Y
+   Reason: Clean install requested; user did not need existing data.
+   userdata + metadata were erased successfully.
+
+7. Flash images on both slots?
+   N
+   Reason: Script proceeded with Slot A; current slot was set to A.
+
+8. Disable Android Verified Boot?
+   N
+   Reason: Keep AVB enabled / do not disable it.
+
+9. Reboot to system?
+   Y
+
+FLASH RESULT
+============
+
+- Stock firmware flashing completed successfully.
+- Final output:
+  "# DONE #"
+  "Stock firmware restored."
+- Reboot command completed successfully.
+- The flasher window was closed after pressing a key.
+
+IMPORTANT
+=========
+
+- No Ctrl+C was used to abort the flash. During vendor_a flashing it appeared
+  stuck for a long time, but the process later continued and completed.
+- Do NOT assume the same Y/N choices apply to every future flash. Re-check the
+  prompt and target firmware each time.
+- Next verification after boot should confirm:
+    adb shell getprop ro.build.display.id
+    adb shell getprop ro.build.version.incremental
+    adb shell getprop ro.boot.slot_suffix
+    adb shell getprop ro.boot.verifiedbootstate
+
+Goal after verification:
+- Confirm Galaga_B4.1-260812-1729 is installed correctly.
+- Then separately proceed with Fenrir/root research.
