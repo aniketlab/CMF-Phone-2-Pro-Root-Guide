@@ -243,6 +243,26 @@ adb shell getprop ro.boot.vbmeta.device_state
 
 ---
 
+## 🧠 Advanced: Technical Details & Troubleshooting
+
+For the geeks and advanced users, here is the deep-dive architecture of what we just achieved and why we chose this specific path:
+
+### 1. The Architecture (LKM vs GKI)
+We explicitly used **KernelSU Next via LKM** (Loadable Kernel Module).
+*   **Why `init_boot`?** LKM requires patching `init_boot.img` instead of `boot.img`. It preserves your stock kernel while loading the root module path seamlessly.
+*   **The Final Flow:** 
+    `Stock Firmware` ➔ `Patched init_boot` (KSU Next Root) ➔ `Flashed lk` (Fenrir Spoofing) ➔ `Green Boot State`
+
+### 2. Common Errors & Fixes
+*   **OTA Updater Failed:** If you attempt to use the Nothing Offline OTA updater APK for this firmware, it throws `DOWNLOAD_STATE_INITIALIZATION_ERROR/20`. That is why we strictly use the Fastboot `flash_all.bat` script!
+*   **GhostLock:** GhostLock is unsupported for this specific B4.1 state, which is why we abandoned it in favor of Fenrir.
+*   **"Missing Files" during Flash:** The `flash_all.bat` script might complain about "missing" files during hash verification. It's actually just misreading `.sha256` comment lines. Actual images flash perfectly.
+
+### 3. Critical Compatibility Rule
+Do not assume *"Nothing OS 4.1 = Compatible"*. Fenrir and KernelSU exploit paths are highly version-sensitive. You **must** be on the exact build: `Galaga-B4.1-260812-1729`. Do not flash this specific `galaga-fenrir.bin` on older firmware, custom ROMs, or other Nothing devices!
+
+---
+
 ## 🤝 Credits & Acknowledgements
 
 A massive thanks to the developers and communities who made this possible:
