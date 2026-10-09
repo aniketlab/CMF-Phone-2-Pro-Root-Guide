@@ -6,6 +6,12 @@
 
 ---
 
+> [!CAUTION]
+> **DISCLAIMER: Your warranty is now void.**
+> I am not responsible for bricked devices, dead SD cards, or you getting fired because the alarm app failed. Please do some research if you have any concerns about the tools or features included in this guide before flashing it! YOU are choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.
+
+---
+
 ## 📱 Target Device & Firmware Details
 
 Below is the specific firmware version this guide is built for. You **must** be on this exact build for the Fenrir bootloader spoofing to work flawlessly.
