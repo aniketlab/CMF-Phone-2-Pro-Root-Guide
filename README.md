@@ -240,3 +240,13 @@ adb shell getprop ro.boot.vbmeta.device_state
 ```
 
 **Congratulations! 🎉 Your CMF Phone 2 Pro is perfectly rooted, the bootloader warning is completely gone, and your security integrity is fully intact!**
+
+---
+
+## 🤝 Credits & Acknowledgements
+
+A massive thanks to the developers and communities who made this possible:
+*   **[Aniket Sharma (aniketlab)](https://github.com/aniketlab)** — Guide Author & AIO Package Creator.
+*   **[The Fenrir Project](https://github.com/R0rt1z2/fenrir)** — For the amazing bootloader spoofing payload.
+*   **[spike0en (Nothing Archive)](https://github.com/spike0en/nothing_archive)** — For maintaining the official firmware archives.
+*   **[KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next)** & **[BakaSU](https://github.com/Baka-SU/BakaSU)** — For their incredible, undetectable root managers.
